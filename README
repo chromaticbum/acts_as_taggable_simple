@@ -53,4 +53,13 @@ t.tag_list # returns ["rails", "html", "js"]
 # saving the model
 
 
+Credits/Thanks
+==============
+
+Many thank you's to the creators of the acts-as-taggable-on gem, which
+if it was not obvious, this gem borrows quite heavily
+from. This gem is in fact meant to be a stripped down
+version of acts-as-taggable-on.
+
+
 Copyright (c) 2011 Hollin R. Wilkins, released under the MIT license
