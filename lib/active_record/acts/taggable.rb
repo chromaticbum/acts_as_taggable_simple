@@ -19,11 +19,11 @@ module ActiveRecord
 
       module InstanceMethods
         def tag_list
-          instance_variable_get('@tag_list') || instance_variable_set('@tag_list', tags.map(&:name))
+          instance_variable_get('@tag_list') || instance_variable_set('@tag_list', TagList.new(tags.map(&:name)))
         end
 
         def tag_list=(list)
-          instance_variable_set('@tag_list', list.is_a?(String) ? list.split(" ") : list)
+          instance_variable_set('@tag_list', list.is_a?(String) ? TagList.new(list.split(" ")) : list)
         end
 
         def save_tags
