@@ -2,6 +2,7 @@ require 'rake'
 require 'rspec/core/rake_task'
 require 'rake/rdoctask'
 require 'echoe'
+require 'rubygems'
 
 desc 'Default: run unit tests.'
 task :default => :spec
