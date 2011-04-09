@@ -1,7 +1,7 @@
 ActsAsTaggableSimple
 ====================
 
-This gem was build because other solutions to adding in tagging
+This gem was built because other solutions for adding tagging
 functionality were either outdated or too complex for most
 simple needs.
 
@@ -18,6 +18,16 @@ tag_list= takes a string of tags separated by spaces.
 This plugin leaves all of the custom computations, such as cloud
 calculations to the user and is meant to only provide the most
 basic framework for tags.
+
+
+Implementation
+=============
+
+The implementation is currently as simple as it can be.
+There is a polymorphic class called taggable which can 
+have many taggings. Taggings belong to taggable and tag
+models and act as the joining table for these items.
+After this, all of the SQL generation is left to Rails.
 
 
 Example

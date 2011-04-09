@@ -27,41 +27,7 @@ module ActiveRecord
         end
 
         def save_tags
-          list = ActsAsTaggableSimple::Tag.find_or_create_all_tags(tag_list)
-          current_tags = tags
-          old_tags = current_tags - list
-          new_tags = list - current_tags
-
-          old_taggings = taggings.where(:tag_id => old_tags)
-          
-          if old_taggings.present?
-            # TODO make more efficient?
-            old_taggings.each do |tagging|
-              tagging.delete
-            end
-          end
-
-          new_tags.each do |tag|
-            taggings.create!(:tag => tag, :taggable => self)
-          end
-
-          tags.reload
-
-          # current_tags = tags
-          # old_tags = current_tags - list
-          # new_tags = list - current_tags
-
-          # old_taggings = taggings.where(:tag_id => old_tags)
-
-          # if old_taggings.present?
-          #   ActsAsTaggableSimple::Tagging.destroy_all old_taggings
-          # end
-
-          # new_tags.each do |tag|
-          #   taggings.create!(:tag => tag, :taggable => self)
-          # end
-
-          # tags.reload
+          self.tags = ActsAsTaggableSimple::Tag.find_or_create_all_tags(self.tag_list)
         end
       end
     end
