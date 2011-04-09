@@ -1,13 +1,46 @@
 ActsAsTaggableSimple
 ====================
 
-Introduction goes here.
+This gem was build because other solutions to adding in tagging
+functionality were either outdated or too complex for most
+simple needs.
+
+ActsAsTaggableSimple adds #acts_as_taggable to ActiveRecord::Base.
+When called, this method will add in a has_many :taggings and
+has_many :tags, :through => :taggings relationship to the model.
+
+tag_list and tag_list= methods are also defined in order to
+see and update the tags on the model.
+
+tag_list returns an array of strings of the tags.
+tag_list= takes a string of tags separated by spaces.
+
+This plugin leaves all of the custom computations, such as cloud
+calculations to the user and is meant to only provide the most
+basic framework for tags.
 
 
 Example
 =======
 
-Example goes here.
+app/models/taggable_model.rb
+
+class TaggableModel < ActiveRecord::Base
+    acts_as_taggable
+end
 
 
-Copyright (c) 2011 [name of plugin creator], released under the MIT license
+rails console
+
+t = TaggableModel.new :tag_list => "rails css javascript"
+t.save
+t.tag_list # returns ["rails", "css", "javascript"]
+t.tag_list = "rails html js"
+t.save
+t.tag_list # returns ["rails", "html", "js"]
+# note that #tag_list is updated immediately after setting
+# it, while #tags and #taggings are only updated after
+# saving the model
+
+
+Copyright (c) 2011 Hollin R. Wilkins, released under the MIT license
