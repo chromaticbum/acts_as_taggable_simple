@@ -28,7 +28,7 @@ Rake::RDocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
 
-Echoe.new('acts_as_taggable_simple', '0.0.1') do |p|
+Echoe.new('acts_as_taggable_simple', '0.0.2') do |p|
   p.description     = "Adds acts_as_taggable to ActiveRecord::Model to easily tag objects, no extra fluff"
   p.url             = "http://github.com/chromaticbum/acts_as_taggable_simple"
   p.author          = "Hollin R. Wilkins"

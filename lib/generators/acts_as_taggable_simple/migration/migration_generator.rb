@@ -1,5 +1,9 @@
-module ActsAsTaggableSimple
-  module Generators
+module ActsAsTaggableSimple #:nodoc:
+  module Generators #:nodoc:
+
+    # Generates a migration file for migrating two tables into the database for acts_as_taggable_simple to function:
+    # * tags
+    # * taggings
     class MigrationGenerator < Rails::Generators::Base
       include Rails::Generators::Migration
 

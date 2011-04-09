@@ -1,6 +1,8 @@
 pkg
 doc
+rdoc
 pkg/**/*
-Gemfile.lock
 doc/**/*
+rdoc/**/*
+Gemfile.lock
 Manifest

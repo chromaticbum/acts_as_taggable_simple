@@ -1,65 +1,118 @@
-ActsAsTaggableSimple
-====================
+= ActsAsTaggableSimple
 
-This gem was built because other solutions for adding tagging
-functionality were either outdated or too complex for most
-simple needs.
+=== Overview
 
-ActsAsTaggableSimple adds #acts_as_taggable to ActiveRecord::Base.
-When called, this method will add in a has_many :taggings and
-has_many :tags, :through => :taggings relationship to the model.
+ActsAsTaggableSimple provides an +acts_as+ style method to
+ActiveRecord::Base for taggable records. It also provides
+the following methods to a taggable model:
 
-tag_list and tag_list= methods are also defined in order to
-see and update the tags on the model.
+* tag_list - returns an Array of tag String objects
+* tag_list= - takes either a String of tags or an array of tag String objects and sets the tags for the object
 
-tag_list returns an array of strings of the tags.
-tag_list= takes a string of tags separated by spaces.
+acts_as_taggable provides two new attributes for a model:
 
-This plugin leaves all of the custom computations, such as cloud
-calculations to the user and is meant to only provide the most
-basic framework for tags.
+* tags - the ActsAsTaggable::Tag objects associated with the taggable item
+* taggings - the ActsAsTaggable::Tagging join objects associated with the taggable item
 
 
-Implementation
-=============
+=== Installation
 
-The implementation is currently as simple as it can be.
-There is a polymorphic class called taggable which can 
-have many taggings. Taggings belong to taggable and tag
-models and act as the joining table for these items.
-After this, all of the SQL generation is left to Rails.
+For Rails 3 applications you should add the following
+line to your Gemfile:
+    gem 'acts_as_taggable_simple'
+Then run:
+    bundle install
+
+You then need to run the migration generator to generate
+the necessary migration for acts_as_taggable_simple to
+work properly.
+    rails generate acts_as_taggable_simple:migration
+
+Next, run the migration. NOTE: you cannot have a table
+named +tags+ or *taggings*, as these names are used by
+acts_as_taggable_simple.
+    rake db:migrate
+
+That's it, you are ready to start using the gem.
 
 
-Example
-=======
+=== Getting Started
+
+This is a walkthrough for setting up and using a
+taggable model. We will be creating an application
+for taking notes that we want to tag for easy searching
+later on.
+
+The first step is to make our ActiveRecord model
+taggable.
+    class Note < ActiveRecord::Base
+        attr_accessible :content
+        acts_as_taggable
+    end
+
+We can then create a new note in the usual manner.
+    note = Note.new :content => "acts_as_taggable_simple is so simple!"
+
+We can give the note tags.
+    note.tag_list = "rails tags gem"
+
+We can also give the note tags by passing an Array of String's.
+    note.tag_list = %w{rails tags gem}
+
+We can retrieve an Array of tag String's for our note.
+    note.tag_list  # returns ["rails", "tags", "gem"]
+
+Note that our note will not be tagged until we save it.
+    note.save
+
+Now when we retrieve our note from active record,
+it will retain the tags we have given it.
+
+If necessary we can directly manipulate a note's tag objects.
+This should not be necessary though, and for normal use we can
+do all of our tag editing through tag_list.
+    note.tags << ActsAsTaggableSimple::Tag.new :name => 'why_did_we_do_this?'
+
+We can also manipulate the join objects by accessing taggings on a note.
+Again, there is usually never a need to do this.
+    note.taggings  # returns all of the ActsAsTaggableSimple::Tagging objects for our note
+
+This is all we can do with this gem. Things like searching are left to
+the user or solutions like:
+http://github.com/ernie/meta_search
+
+If you want to do cloud calculations on tags, this task is left to you.
+
+
+=== Example
 
 app/models/taggable_model.rb
 
-class TaggableModel < ActiveRecord::Base
-    acts_as_taggable
-end
+    class TaggableModel < ActiveRecord::Base
+        acts_as_taggable
+    end
 
 
 rails console
 
-t = TaggableModel.new :tag_list => "rails css javascript"
-t.save
-t.tag_list # returns ["rails", "css", "javascript"]
-t.tag_list = "rails html js"
-t.save
-t.tag_list # returns ["rails", "html", "js"]
-# note that #tag_list is updated immediately after setting
-# it, while #tags and #taggings are only updated after
-# saving the model
+    t = TaggableModel.new :tag_list => "rails css javascript"
+    t.save
+    t.tag_list # returns ["rails", "css", "javascript"]
+    t.tag_list = "rails html js"
+    t.save
+    t.tag_list # returns ["rails", "html", "js"]
+    # note that tag_list is updated immediately after setting
+    # it, while tags and taggings are only updated after
+    # saving the model
 
 
-Credits/Thanks
-==============
+=== Credits/Thanks
 
 Many thank you's to the creators of the acts-as-taggable-on gem, which
 if it was not obvious, this gem borrows quite heavily
 from. This gem is in fact meant to be a stripped down
 version of acts-as-taggable-on.
 
+=== Copyright
 
 Copyright (c) 2011 Hollin R. Wilkins, released under the MIT license
