@@ -19,18 +19,23 @@ acts_as_taggable provides two new attributes for a model:
 
 For Rails 3 applications you should add the following
 line to your Gemfile:
+
     gem 'acts_as_taggable_simple'
+
 Then run:
+
     bundle install
 
 You then need to run the migration generator to generate
 the necessary migration for acts_as_taggable_simple to
 work properly.
+
     rails generate acts_as_taggable_simple:migration
 
 Next, run the migration. NOTE: you cannot have a table
 named +tags+ or *taggings*, as these names are used by
 acts_as_taggable_simple.
+
     rake db:migrate
 
 That's it, you are ready to start using the gem.
@@ -45,24 +50,30 @@ later on.
 
 The first step is to make our ActiveRecord model
 taggable.
+
     class Note < ActiveRecord::Base
         attr_accessible :content
         acts_as_taggable
     end
 
 We can then create a new note in the usual manner.
+
     note = Note.new :content => "acts_as_taggable_simple is so simple!"
 
 We can give the note tags.
+
     note.tag_list = "rails tags gem"
 
 We can also give the note tags by passing an Array of String's.
+
     note.tag_list = %w{rails tags gem}
 
 We can retrieve an Array of tag String's for our note.
+
     note.tag_list  # returns ["rails", "tags", "gem"]
 
 Note that our note will not be tagged until we save it.
+
     note.save
 
 Now when we retrieve our note from active record,
@@ -71,10 +82,12 @@ it will retain the tags we have given it.
 If necessary we can directly manipulate a note's tag objects.
 This should not be necessary though, and for normal use we can
 do all of our tag editing through tag_list.
+
     note.tags << ActsAsTaggableSimple::Tag.new :name => 'why_did_we_do_this?'
 
 We can also manipulate the join objects by accessing taggings on a note.
 Again, there is usually never a need to do this.
+
     note.taggings  # returns all of the ActsAsTaggableSimple::Tagging objects for our note
 
 This is all we can do with this gem. Things like searching are left to

@@ -1,38 +1,52 @@
-require 'rake'
-require 'rspec/core/rake_task'
-require 'rake/rdoctask'
-require 'echoe'
 require 'rubygems'
+require 'bundler'
+require 'rspec/core/rake_task'
 
-desc 'Default: run unit tests.'
-task :default => :spec
+begin
+  Bundler.setup(:default, :development)
+rescue Bundler::BundlerError => e
+  $stderr.puts e.message
+  $stderr.puts "Run `bundle install` to install missing gems"
+  exit e.status_code
+end
+require 'rake'
+
+require 'jeweler'
+Jeweler::Tasks.new do |gem|
+  # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
+  gem.name = "acts_as_taggable_simple"
+  gem.homepage = "http://github.com/chromaticbum/acts_as_taggable_simple"
+  gem.license = "MIT"
+  gem.summary = %Q{Provides an acts_as_taggable method for ActiveRecord::Base}
+  gem.description = %Q{
+    Provides an acts_as_taggable method for ActiveRecord::Base, which
+    allows your models to be tagged with arbitrary strings.
+
+    This gem is written to rely completely on rails-generated SQL.
+    This may change in the future, but the idea is that this gem should play nicely
+    with other gems like meta_search.
+  }
+  gem.email = "hrw7@cornell.edu"
+  gem.authors = ["Hollin R. Wilkins"]
+  # Include your dependencies below. Runtime dependencies are required when using your gem,
+  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
+  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
+  #  gem.add_development_dependency 'rspec', '> 1.2.3'
+end
+Jeweler::RubygemsDotOrgTasks.new
 
 RSpec::Core::RakeTask.new do |t|
   pattern = "spec/**/*_spec.rb"
 end
 
-desc 'Test the acts_as_taggable_simple plugin.'
-Rake::TestTask.new(:test) do |t|
-  t.libs << 'lib'
-  t.libs << 'test'
-  t.pattern = 'test/**/*_test.rb'
-  t.verbose = true
-end
+task :default => :spec
 
-desc 'Generate documentation for the acts_as_taggable_simple plugin.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
+require 'rake/rdoctask'
+Rake::RDocTask.new do |rdoc|
+  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title    = 'ActsAsTaggableSimple'
-  rdoc.options << '--line-numbers' << '--inline-source'
-  rdoc.rdoc_files.include('README')
+  rdoc.title = "acts_as_taggable_simple #{version}"
+  rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
-end
-
-Echoe.new('acts_as_taggable_simple', '0.0.2') do |p|
-  p.description     = "Adds acts_as_taggable to ActiveRecord::Model to easily tag objects, no extra fluff"
-  p.url             = "http://github.com/chromaticbum/acts_as_taggable_simple"
-  p.author          = "Hollin R. Wilkins"
-  p.email           = "chromaticbum @nospam@ gmail.com"
-  p.ignore_pattern  = ["tmp/*", "script/*"]
-  p.development_dependencies = []
 end
