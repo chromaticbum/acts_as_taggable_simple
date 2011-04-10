@@ -4,6 +4,7 @@ describe "Taggable" do
   before :each do
     clean_database!
     @taggable = TaggableModel.new
+    @other = OtherModel.new
   end
 
   it "should be able to create tags" do
@@ -61,5 +62,29 @@ describe "Taggable" do
 
     @taggable.save
     @taggable.tags.empty?.should be_false
+  end
+
+  it "should be able to tag multiple models simultaneously" do
+    @taggable.tag_list = "ruby rails css"
+    @taggable.save
+
+    @other.tag_list = "ruby rails css"
+    @other.save
+
+    taggable1 = TaggableModel.new :tag_list => "ruby tag1 tag2"
+    other1 = OtherModel.new :tag_list => "rails tag1 tag3 tag4"
+
+    taggable1.save
+    other1.save
+
+    @taggable = TaggableModel.find @taggable.id
+    @other = OtherModel.find @other.id
+    taggable1 = TaggableModel.find taggable1.id
+    other1 = OtherModel.find other1.id
+
+    @taggable.tag_list.sort.should == %w{ruby rails css}.sort
+    @other.tag_list.sort.should == %w{ruby rails css}.sort
+    taggable1.tag_list.sort.should == %w{ruby tag1 tag2}.sort
+    other1.tag_list.sort.should == %w{rails tag1 tag3 tag4}.sort
   end
 end

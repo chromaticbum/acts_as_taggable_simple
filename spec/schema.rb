@@ -13,6 +13,9 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table :taggable_models do |t|
   end
 
+  create_table :other_models do |t|
+  end
+
   create_table :untaggable_models do |t|
   end
 end
