@@ -11,6 +11,7 @@ module ActiveRecord #:nodoc:
     # 
     #   note.tag_list = "rails css javascript"
     #   note.tag_list  # returns ["rails", "css", "javascript"]
+    #
     module Taggable 
       def self.included(base) #:nodoc:
         base.send :extend, ClassMethods
