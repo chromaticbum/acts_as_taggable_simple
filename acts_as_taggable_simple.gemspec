@@ -41,6 +41,7 @@ Gem::Specification.new do |s|
     "spec/acts_as_taggable_simple/spec_helper.rb",
     "spec/acts_as_taggable_simple/taggable_spec.rb",
     "spec/database.yml",
+    "spec/debug.log",
     "spec/models.rb",
     "spec/schema.rb",
     "spec/spec_helper.rb"
