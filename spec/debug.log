@@ -1783,3 +1783,173 @@ D, [2011-05-13T00:27:40.480340 #25738] DEBUG -- :   [1m[35mActsAsTaggableSimpl
 D, [2011-05-13T00:27:40.481438 #25738] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 1) AND ("taggings".taggable_type = 'OtherModel'))[0m
 D, [2011-05-13T00:27:40.482497 #25738] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 9) AND ("taggings".taggable_type = 'TaggableModel'))
 D, [2011-05-13T00:27:40.483576 #25738] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 2) AND ("taggings".taggable_type = 'OtherModel'))[0m
+D, [2011-05-13T00:35:46.765130 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM tags[0m
+D, [2011-05-13T00:35:46.765749 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM taggings
+D, [2011-05-13T00:35:46.766267 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM taggable_models[0m
+D, [2011-05-13T00:35:46.766744 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM untaggable_models
+D, [2011-05-13T00:35:46.770986 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM tags[0m
+D, [2011-05-13T00:35:46.771253 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM taggings
+D, [2011-05-13T00:35:46.771452 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM taggable_models[0m
+D, [2011-05-13T00:35:46.771638 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM untaggable_models
+D, [2011-05-13T00:35:46.820615 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tags"[0m
+D, [2011-05-13T00:35:46.821935 #26821] DEBUG -- :   [1m[35mSQL (0.2ms)[0m   SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+
+D, [2011-05-13T00:35:46.822454 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggable_models" VALUES(NULL)[0m
+D, [2011-05-13T00:35:46.827239 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."name" IN ('tag2', 'tag3', 'tag1')
+D, [2011-05-13T00:35:46.853860 #26821] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mSELECT 1 FROM "tags" WHERE ("tags"."name" = 'tag2') LIMIT 1[0m
+D, [2011-05-13T00:35:46.854938 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "tags" ("name") VALUES ('tag2')
+D, [2011-05-13T00:35:46.856372 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "tags" WHERE ("tags"."name" = 'tag3') LIMIT 1[0m
+D, [2011-05-13T00:35:46.856977 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "tags" ("name") VALUES ('tag3')
+D, [2011-05-13T00:35:46.858216 #26821] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mSELECT 1 FROM "tags" WHERE ("tags"."name" = 'tag1') LIMIT 1[0m
+D, [2011-05-13T00:35:46.858812 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "tags" ("name") VALUES ('tag1')
+D, [2011-05-13T00:35:46.886923 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 1) AND ("taggings".taggable_type = 'TaggableModel'))[0m
+D, [2011-05-13T00:35:46.894992 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (1, 'TaggableModel', 1)
+D, [2011-05-13T00:35:46.896808 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (1, 'TaggableModel', 2)[0m
+D, [2011-05-13T00:35:46.925111 #26821] DEBUG -- :   [1m[35mAREL (3.3ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (1, 'TaggableModel', 3)
+D, [2011-05-13T00:35:46.927715 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tags"[0m
+D, [2011-05-13T00:35:46.928400 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM tags
+D, [2011-05-13T00:35:46.928627 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM taggings[0m
+D, [2011-05-13T00:35:46.928815 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM taggable_models
+D, [2011-05-13T00:35:46.929004 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM untaggable_models[0m
+D, [2011-05-13T00:35:46.930089 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggable_models" VALUES(NULL)
+D, [2011-05-13T00:35:46.930916 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."name" IN ('tag2', 'tag3', 'tag1')[0m
+D, [2011-05-13T00:35:46.932378 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "tags" WHERE ("tags"."name" = 'tag2') LIMIT 1
+D, [2011-05-13T00:35:46.933094 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "tags" ("name") VALUES ('tag2')[0m
+D, [2011-05-13T00:35:46.934422 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "tags" WHERE ("tags"."name" = 'tag3') LIMIT 1
+D, [2011-05-13T00:35:46.935104 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "tags" ("name") VALUES ('tag3')[0m
+D, [2011-05-13T00:35:46.936502 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "tags" WHERE ("tags"."name" = 'tag1') LIMIT 1
+D, [2011-05-13T00:35:46.937213 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "tags" ("name") VALUES ('tag1')[0m
+D, [2011-05-13T00:35:46.938496 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.1ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 2) AND ("taggings".taggable_type = 'TaggableModel'))
+D, [2011-05-13T00:35:46.940915 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (2, 'TaggableModel', 4)[0m
+D, [2011-05-13T00:35:46.942446 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (2, 'TaggableModel', 5)
+D, [2011-05-13T00:35:46.943933 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (2, 'TaggableModel', 6)[0m
+D, [2011-05-13T00:35:46.946544 #26821] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "tags"
+D, [2011-05-13T00:35:46.947424 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggable_models" VALUES(NULL)[0m
+D, [2011-05-13T00:35:46.948159 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."name" IN ('tag2', 'tag1', 'rails', 'css')
+D, [2011-05-13T00:35:46.949552 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "tags" WHERE ("tags"."name" = 'rails') LIMIT 1[0m
+D, [2011-05-13T00:35:46.950242 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "tags" ("name") VALUES ('rails')
+D, [2011-05-13T00:35:46.951481 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "tags" WHERE ("tags"."name" = 'css') LIMIT 1[0m
+D, [2011-05-13T00:35:46.952074 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "tags" ("name") VALUES ('css')
+D, [2011-05-13T00:35:46.953223 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.1ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 3) AND ("taggings".taggable_type = 'TaggableModel'))[0m
+D, [2011-05-13T00:35:46.956059 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (3, 'TaggableModel', 7)
+D, [2011-05-13T00:35:46.957601 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (3, 'TaggableModel', 8)[0m
+D, [2011-05-13T00:35:46.959075 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (3, 'TaggableModel', 6)
+D, [2011-05-13T00:35:46.960522 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (3, 'TaggableModel', 4)[0m
+D, [2011-05-13T00:35:46.962529 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT COUNT(*) FROM "tags"
+D, [2011-05-13T00:35:46.963127 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tags"[0m
+D, [2011-05-13T00:35:46.963866 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggable_models" VALUES(NULL)
+D, [2011-05-13T00:35:46.964554 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."name" IN ('tag2', 'tag1', 'rails', 'css')[0m
+D, [2011-05-13T00:35:46.965643 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.1ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 4) AND ("taggings".taggable_type = 'TaggableModel'))
+D, [2011-05-13T00:35:46.968077 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (4, 'TaggableModel', 8)[0m
+D, [2011-05-13T00:35:46.969531 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (4, 'TaggableModel', 7)
+D, [2011-05-13T00:35:46.970990 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (4, 'TaggableModel', 6)[0m
+D, [2011-05-13T00:35:46.972426 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (4, 'TaggableModel', 4)
+D, [2011-05-13T00:35:46.974091 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "tags"[0m
+D, [2011-05-13T00:35:46.974747 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM tags
+D, [2011-05-13T00:35:46.974974 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM taggings[0m
+D, [2011-05-13T00:35:46.975170 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM taggable_models
+D, [2011-05-13T00:35:46.975359 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM untaggable_models[0m
+D, [2011-05-13T00:35:46.976385 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggable_models" VALUES(NULL)
+D, [2011-05-13T00:35:46.977140 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."name" IN ('ruby', 'rails', 'css')[0m
+D, [2011-05-13T00:35:46.978639 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "tags" WHERE ("tags"."name" = 'ruby') LIMIT 1
+D, [2011-05-13T00:35:46.979355 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "tags" ("name") VALUES ('ruby')[0m
+D, [2011-05-13T00:35:46.980593 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "tags" WHERE ("tags"."name" = 'rails') LIMIT 1
+D, [2011-05-13T00:35:46.981203 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "tags" ("name") VALUES ('rails')[0m
+D, [2011-05-13T00:35:46.982366 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "tags" WHERE ("tags"."name" = 'css') LIMIT 1
+D, [2011-05-13T00:35:46.982949 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "tags" ("name") VALUES ('css')[0m
+D, [2011-05-13T00:35:46.984348 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 5) AND ("taggings".taggable_type = 'TaggableModel'))
+D, [2011-05-13T00:35:46.986886 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (5, 'TaggableModel', 9)[0m
+D, [2011-05-13T00:35:46.988383 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (5, 'TaggableModel', 10)
+D, [2011-05-13T00:35:46.989792 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (5, 'TaggableModel', 11)[0m
+D, [2011-05-13T00:35:46.992084 #26821] DEBUG -- :   [1m[35mSQL (0.2ms)[0m  SELECT COUNT(*) FROM "taggings" WHERE ("taggings".taggable_id = 5 AND "taggings".taggable_type = 'TaggableModel')
+D, [2011-05-13T00:35:46.993276 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."name" IN ('ruby', 'rails')[0m
+D, [2011-05-13T00:35:46.994387 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  DELETE FROM "taggings" WHERE "taggings"."taggable_id" = 5 AND "taggings"."taggable_type" = 'TaggableModel' AND "taggings"."tag_id" = 11
+D, [2011-05-13T00:35:46.995536 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT COUNT(*) FROM "taggings" WHERE ("taggings".taggable_id = 5 AND "taggings".taggable_type = 'TaggableModel')[0m
+D, [2011-05-13T00:35:46.996146 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM tags
+D, [2011-05-13T00:35:46.996371 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM taggings[0m
+D, [2011-05-13T00:35:46.996559 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM taggable_models
+D, [2011-05-13T00:35:46.996746 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM untaggable_models[0m
+D, [2011-05-13T00:35:46.997754 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggable_models" VALUES(NULL)
+D, [2011-05-13T00:35:46.998571 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."name" IN ('ruby', 'rails', 'css')[0m
+D, [2011-05-13T00:35:47.000010 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "tags" WHERE ("tags"."name" = 'ruby') LIMIT 1
+D, [2011-05-13T00:35:47.000733 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "tags" ("name") VALUES ('ruby')[0m
+D, [2011-05-13T00:35:47.001937 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "tags" WHERE ("tags"."name" = 'rails') LIMIT 1
+D, [2011-05-13T00:35:47.002570 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "tags" ("name") VALUES ('rails')[0m
+D, [2011-05-13T00:35:47.003755 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "tags" WHERE ("tags"."name" = 'css') LIMIT 1
+D, [2011-05-13T00:35:47.004383 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "tags" ("name") VALUES ('css')[0m
+D, [2011-05-13T00:35:47.005585 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.1ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 6) AND ("taggings".taggable_type = 'TaggableModel'))
+D, [2011-05-13T00:35:47.007872 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (6, 'TaggableModel', 12)[0m
+D, [2011-05-13T00:35:47.009303 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (6, 'TaggableModel', 13)
+D, [2011-05-13T00:35:47.010734 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (6, 'TaggableModel', 14)[0m
+D, [2011-05-13T00:35:47.013236 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."name" IN ('ruby', 'rails')
+D, [2011-05-13T00:35:47.014312 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mDELETE FROM "taggings" WHERE "taggings"."taggable_id" = 6 AND "taggings"."taggable_type" = 'TaggableModel' AND "taggings"."tag_id" = 14[0m
+D, [2011-05-13T00:35:47.015595 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tagging Load (0.2ms)[0m  SELECT "taggings".* FROM "taggings" WHERE ("taggings".taggable_id = 6 AND "taggings".taggable_type = 'TaggableModel')
+D, [2011-05-13T00:35:47.016909 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM tags[0m
+D, [2011-05-13T00:35:47.017146 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM taggings
+D, [2011-05-13T00:35:47.017339 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM taggable_models[0m
+D, [2011-05-13T00:35:47.017553 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM untaggable_models
+D, [2011-05-13T00:35:47.019429 #26821] DEBUG -- :   [1m[36mSQL (0.2ms)[0m  [1mSELECT COUNT(*) FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = NULL) AND ("taggings".taggable_type = 'TaggableModel'))[0m
+D, [2011-05-13T00:35:47.020666 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggable_models" VALUES(NULL)
+D, [2011-05-13T00:35:47.021450 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" WHERE "tags"."name" IN ('ruby', 'rails', 'css')[0m
+D, [2011-05-13T00:35:47.022874 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "tags" WHERE ("tags"."name" = 'ruby') LIMIT 1
+D, [2011-05-13T00:35:47.023598 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "tags" ("name") VALUES ('ruby')[0m
+D, [2011-05-13T00:35:47.024814 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "tags" WHERE ("tags"."name" = 'rails') LIMIT 1
+D, [2011-05-13T00:35:47.025397 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "tags" ("name") VALUES ('rails')[0m
+D, [2011-05-13T00:35:47.026552 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  SELECT 1 FROM "tags" WHERE ("tags"."name" = 'css') LIMIT 1
+D, [2011-05-13T00:35:47.027135 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "tags" ("name") VALUES ('css')[0m
+D, [2011-05-13T00:35:47.029477 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (7, 'TaggableModel', 15)
+D, [2011-05-13T00:35:47.030975 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (7, 'TaggableModel', 16)[0m
+D, [2011-05-13T00:35:47.032483 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (7, 'TaggableModel', 17)
+D, [2011-05-13T00:35:47.034750 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM tags[0m
+D, [2011-05-13T00:35:47.034991 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM taggings
+D, [2011-05-13T00:35:47.035189 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM taggable_models[0m
+D, [2011-05-13T00:35:47.035375 #26821] DEBUG -- :   [1m[35mSQL (0.1ms)[0m  DELETE FROM untaggable_models
+D, [2011-05-13T00:35:47.036377 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggable_models" VALUES(NULL)[0m
+D, [2011-05-13T00:35:47.037127 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."name" IN ('ruby', 'rails', 'css')
+D, [2011-05-13T00:35:47.038608 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "tags" WHERE ("tags"."name" = 'ruby') LIMIT 1[0m
+D, [2011-05-13T00:35:47.039316 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "tags" ("name") VALUES ('ruby')
+D, [2011-05-13T00:35:47.040530 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "tags" WHERE ("tags"."name" = 'rails') LIMIT 1[0m
+D, [2011-05-13T00:35:47.041150 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "tags" ("name") VALUES ('rails')
+D, [2011-05-13T00:35:47.042340 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "tags" WHERE ("tags"."name" = 'css') LIMIT 1[0m
+D, [2011-05-13T00:35:47.042918 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "tags" ("name") VALUES ('css')
+D, [2011-05-13T00:35:47.044113 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.1ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 8) AND ("taggings".taggable_type = 'TaggableModel'))[0m
+D, [2011-05-13T00:35:47.046663 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (8, 'TaggableModel', 18)
+D, [2011-05-13T00:35:47.048173 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (8, 'TaggableModel', 19)[0m
+D, [2011-05-13T00:35:47.049575 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (8, 'TaggableModel', 20)
+D, [2011-05-13T00:35:47.053626 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "other_models" VALUES(NULL)[0m
+D, [2011-05-13T00:35:47.054540 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."name" IN ('ruby', 'rails', 'css')
+D, [2011-05-13T00:35:47.079629 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 1) AND ("taggings".taggable_type = 'OtherModel'))[0m
+D, [2011-05-13T00:35:47.082114 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (1, 'OtherModel', 20)
+D, [2011-05-13T00:35:47.083606 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (1, 'OtherModel', 19)[0m
+D, [2011-05-13T00:35:47.085026 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (1, 'OtherModel', 18)
+D, [2011-05-13T00:35:47.087227 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggable_models" VALUES(NULL)[0m
+D, [2011-05-13T00:35:47.088043 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."name" IN ('ruby', 'tag1', 'tag2')
+D, [2011-05-13T00:35:47.089506 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "tags" WHERE ("tags"."name" = 'tag1') LIMIT 1[0m
+D, [2011-05-13T00:35:47.090209 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "tags" ("name") VALUES ('tag1')
+D, [2011-05-13T00:35:47.091420 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "tags" WHERE ("tags"."name" = 'tag2') LIMIT 1[0m
+D, [2011-05-13T00:35:47.092004 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "tags" ("name") VALUES ('tag2')
+D, [2011-05-13T00:35:47.093127 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.1ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 9) AND ("taggings".taggable_type = 'TaggableModel'))[0m
+D, [2011-05-13T00:35:47.095351 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (9, 'TaggableModel', 21)
+D, [2011-05-13T00:35:47.096781 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (9, 'TaggableModel', 22)[0m
+D, [2011-05-13T00:35:47.098274 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (9, 'TaggableModel', 18)
+D, [2011-05-13T00:35:47.100132 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "other_models" VALUES(NULL)[0m
+D, [2011-05-13T00:35:47.100798 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" WHERE "tags"."name" IN ('rails', 'tag1', 'tag3', 'tag4')
+D, [2011-05-13T00:35:47.102073 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "tags" WHERE ("tags"."name" = 'tag3') LIMIT 1[0m
+D, [2011-05-13T00:35:47.102698 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "tags" ("name") VALUES ('tag3')
+D, [2011-05-13T00:35:47.103921 #26821] DEBUG -- :   [1m[36mSQL (0.1ms)[0m  [1mSELECT 1 FROM "tags" WHERE ("tags"."name" = 'tag4') LIMIT 1[0m
+D, [2011-05-13T00:35:47.104524 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "tags" ("name") VALUES ('tag4')
+D, [2011-05-13T00:35:47.105541 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.1ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 2) AND ("taggings".taggable_type = 'OtherModel'))[0m
+D, [2011-05-13T00:35:47.107890 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (2, 'OtherModel', 23)
+D, [2011-05-13T00:35:47.109330 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (2, 'OtherModel', 24)[0m
+D, [2011-05-13T00:35:47.110750 #26821] DEBUG -- :   [1m[35mAREL (0.1ms)[0m  INSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (2, 'OtherModel', 19)
+D, [2011-05-13T00:35:47.112176 #26821] DEBUG -- :   [1m[36mAREL (0.1ms)[0m  [1mINSERT INTO "taggings" ("taggable_id", "taggable_type", "tag_id") VALUES (2, 'OtherModel', 21)[0m
+D, [2011-05-13T00:35:47.114017 #26821] DEBUG -- :   [1m[35mTaggableModel Load (0.1ms)[0m  SELECT "taggable_models".* FROM "taggable_models" WHERE "taggable_models"."id" = 8 LIMIT 1
+D, [2011-05-13T00:35:47.114617 #26821] DEBUG -- :   [1m[36mOtherModel Load (0.1ms)[0m  [1mSELECT "other_models".* FROM "other_models" WHERE "other_models"."id" = 1 LIMIT 1[0m
+D, [2011-05-13T00:35:47.115110 #26821] DEBUG -- :   [1m[35mTaggableModel Load (0.1ms)[0m  SELECT "taggable_models".* FROM "taggable_models" WHERE "taggable_models"."id" = 9 LIMIT 1
+D, [2011-05-13T00:35:47.115607 #26821] DEBUG -- :   [1m[36mOtherModel Load (0.1ms)[0m  [1mSELECT "other_models".* FROM "other_models" WHERE "other_models"."id" = 2 LIMIT 1[0m
+D, [2011-05-13T00:35:47.116703 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 8) AND ("taggings".taggable_type = 'TaggableModel'))
+D, [2011-05-13T00:35:47.117816 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 1) AND ("taggings".taggable_type = 'OtherModel'))[0m
+D, [2011-05-13T00:35:47.118862 #26821] DEBUG -- :   [1m[35mActsAsTaggableSimple::Tag Load (0.2ms)[0m  SELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 9) AND ("taggings".taggable_type = 'TaggableModel'))
+D, [2011-05-13T00:35:47.119903 #26821] DEBUG -- :   [1m[36mActsAsTaggableSimple::Tag Load (0.2ms)[0m  [1mSELECT "tags".* FROM "tags" INNER JOIN "taggings" ON "tags".id = "taggings".tag_id WHERE (("taggings".taggable_id = 2) AND ("taggings".taggable_type = 'OtherModel'))[0m
