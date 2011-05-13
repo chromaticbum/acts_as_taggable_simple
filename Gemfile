@@ -1,6 +1,10 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.5'
-gem 'rspec'
-gem 'sqlite3-ruby', :require => 'sqlite3'
-gem 'jeweler'
+# use gemspec for dependencies
+gemspec
+
+# group :test do
+#   gem 'rspec'
+#   gem 'rails'
+#   gem 'sqlite3-ruby', :require => 'sqlite3'
+# end
