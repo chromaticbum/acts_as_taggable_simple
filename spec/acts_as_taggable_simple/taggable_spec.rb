@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe "Taggable" do
-  before :each do
-    @taggable = TaggableModel.new
-    @other = OtherModel.new
+  before do
+    @taggable = Factory.create :todo
+    @other = Factory.create :other
   end
 
   it "should be able to create tags" do
@@ -21,8 +21,8 @@ describe "Taggable" do
     @taggable.tag_list = "tag2 tag3 tag1"
     @taggable.save
 
-    taggable1 = TaggableModel.new(:tag_list => "tag2 tag1 rails css")
-    taggable2 = TaggableModel.new(:tag_list => "tag2 tag1 rails css")
+    taggable1 = Factory.build(:todo, :tag_list => "tag2 tag1 rails css")
+    taggable2 = Factory.build(:todo, :tag_list => "tag2 tag1 rails css")
 
     lambda {
       taggable1.save
@@ -70,16 +70,16 @@ describe "Taggable" do
     @other.tag_list = "ruby rails css"
     @other.save
 
-    taggable1 = TaggableModel.new :tag_list => "ruby tag1 tag2"
-    other1 = OtherModel.new :tag_list => "rails tag1 tag3 tag4"
+    taggable1 = Factory.build(:todo, :tag_list => "ruby tag1 tag2")
+    other1 = Factory.build(:other, :tag_list => "rails tag1 tag3 tag4")
 
     taggable1.save
     other1.save
 
-    @taggable = TaggableModel.find @taggable.id
-    @other = OtherModel.find @other.id
-    taggable1 = TaggableModel.find taggable1.id
-    other1 = OtherModel.find other1.id
+    @taggable = Todo.find @taggable.id
+    @other = Other.find @other.id
+    taggable1 = Todo.find taggable1.id
+    other1 = Other.find other1.id
 
     @taggable.tag_list.sort.should == %w{ruby rails css}.sort
     @other.tag_list.sort.should == %w{ruby rails css}.sort

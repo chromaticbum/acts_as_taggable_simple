@@ -10,12 +10,15 @@ ActiveRecord::Schema.define(:version => 0) do
     t.references :tag
   end
 
-  create_table :taggable_models do |t|
+  create_table :todos do |t|
   end
 
-  create_table :other_models do |t|
+  create_table :notes do |t|
   end
 
-  create_table :untaggable_models do |t|
+  create_table :others do |t|
+  end
+
+  create_table :untaggables do |t|
   end
 end

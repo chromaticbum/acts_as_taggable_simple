@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Acts As Taggable Simple" do
   describe "Taggable Method Generation" do
     before :each do
-      @taggable = TaggableModel.new
+      @taggable = Factory.build :todo
     end
 
     it "should generate a tag_list and tag_list= method" do

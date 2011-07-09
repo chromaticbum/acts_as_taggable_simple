@@ -1,10 +1,14 @@
-class TaggableModel < ActiveRecord::Base
+class Todo < ActiveRecord::Base
   acts_as_taggable
 end
 
-class OtherModel < ActiveRecord::Base
+class Other < ActiveRecord::Base
   acts_as_taggable
 end
 
-class UntaggableModel <  ActiveRecord::Base
+class Note < ActiveRecord::Base
+  acts_as_taggable :countries
+end
+
+class Untaggable <  ActiveRecord::Base
 end

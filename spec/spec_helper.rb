@@ -1,6 +1,9 @@
 require 'rubygems'
 require 'bundler'
 require 'rspec'
+require 'factory_girl'
+
+require 'factories'
 
 require 'active_support'
 require 'active_record'
