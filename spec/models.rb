@@ -7,7 +7,11 @@ class Other < ActiveRecord::Base
 end
 
 class Note < ActiveRecord::Base
-  acts_as_taggable :countries
+  acts_as_taggable :country
+end
+
+class Multi <  ActiveRecord::Base
+  acts_as_taggable :country, :city
 end
 
 class Untaggable <  ActiveRecord::Base

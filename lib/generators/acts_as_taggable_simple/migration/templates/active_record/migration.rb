@@ -20,6 +20,8 @@ class ActsAsTaggableSimpleMigration < ActiveRecord::Migration
     create_table :taggings do |t|
       t.references :taggable, :polymorphic => true
       t.references :tag
+
+      t.string :context
     end
   end
 

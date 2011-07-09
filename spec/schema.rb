@@ -8,9 +8,14 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table :taggings do |t|
     t.references :taggable, :polymorphic => true
     t.references :tag
+
+    t.string :context
   end
 
   create_table :todos do |t|
+  end
+
+  create_table :multis do |t|
   end
 
   create_table :notes do |t|

@@ -32,6 +32,9 @@ RSpec.configure do |config|
   config.mock_with :rspec
 
   config.around do |spec|
-    ActiveRecord::Base.transaction &spec
+    ActiveRecord::Base.transaction do
+      spec.run
+      raise ActiveRecord::Rollback
+    end
   end
 end
