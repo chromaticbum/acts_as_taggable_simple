@@ -3,7 +3,6 @@ require 'spec_helper'
 describe "Acts As Taggable Simple" do
   describe "Taggable Method Generation" do
     before :each do
-      clean_database!
       @taggable = TaggableModel.new
     end
 

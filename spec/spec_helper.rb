@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'bundler'
-require 'test/unit'
+require 'rspec'
 
 require 'active_support'
 require 'active_record'
@@ -25,9 +25,10 @@ ActiveRecord::Base.silence do
   load(File.dirname(__FILE__) + "/models.rb")
 end
 
-def clean_database!
-  models = [ActsAsTaggableSimple::Tag, ActsAsTaggableSimple::Tagging, TaggableModel, UntaggableModel]
-  models.each do |model|
-    ActiveRecord::Base.connection.execute "DELETE FROM #{model.table_name}"
+RSpec.configure do |config|
+  config.mock_with :rspec
+
+  config.around do |spec|
+    ActiveRecord::Base.transaction &spec
   end
 end

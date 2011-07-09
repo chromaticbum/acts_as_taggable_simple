@@ -9,3 +9,4 @@ rdoc/**/*
 Gemfile.lock
 Manifest
 .idea/
+spec/*.log

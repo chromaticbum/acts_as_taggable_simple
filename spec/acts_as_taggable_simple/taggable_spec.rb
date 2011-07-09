@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe "Taggable" do
   before :each do
-    clean_database!
     @taggable = TaggableModel.new
     @other = OtherModel.new
   end
