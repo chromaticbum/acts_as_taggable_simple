@@ -9,11 +9,6 @@ the following methods to a taggable model:
 * tag_list - returns an Array of tag String objects
 * tag_list= - takes either a String of tags or an array of tag String objects and sets the tags for the object
 
-acts_as_taggable provides two new attributes for a model:
-
-* tags - the ActsAsTaggable::Tag objects associated with the taggable item
-* taggings - the ActsAsTaggable::Tagging join objects associated with the taggable item
-
 
 === Installation
 
@@ -79,22 +74,27 @@ Note that our note will not be tagged until we save it.
 Now when we retrieve our note from active record,
 it will retain the tags we have given it.
 
-If necessary we can directly manipulate a note's tag objects.
-This should not be necessary though, and for normal use we can
-do all of our tag editing through tag_list.
-
-    note.tags << ActsAsTaggableSimple::Tag.new :name => 'why_did_we_do_this?'
-
-We can also manipulate the join objects by accessing taggings on a note.
-Again, there is usually never a need to do this.
-
-    note.taggings  # returns all of the ActsAsTaggableSimple::Tagging objects for our note
-
 This is all we can do with this gem. Things like searching are left to
 the user or solutions like:
 http://github.com/ernie/meta_search
 
 If you want to do cloud calculations on tags, this task is left to you.
+
+
+=== Contexts
+
+    class Note < ActiveRecord::Base
+        attr_accessible :content
+        acts_as_taggable :tag, :color
+    end
+
+    note = Note.new
+    note.tag_list = "new important"
+    note.color_list = "red blue purple"
+    note.save
+
+    note.tag_list    # returns ["new", "important"]
+    note.color_list  # returns ["red", "blue", "purple"]
 
 
 === Example
