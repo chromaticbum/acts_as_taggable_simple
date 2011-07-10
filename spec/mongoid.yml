@@ -1,0 +1,4 @@
+test:
+  host: localhost
+  database: acts_as_taggable_simple_test
+

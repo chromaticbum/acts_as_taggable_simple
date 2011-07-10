@@ -4,7 +4,9 @@ module ActsAsTaggableSimple #:nodoc:
   #
   # Tags have only one attribute: +name+, which is just the text representation of the tag.
   # +name+ must be unique for each instance.
-  class Tag < ::ActiveRecord::Base
+  class Tag
+    include Mongoid::Document
+
     attr_accessible :name
 
     validates_uniqueness_of :name
@@ -25,7 +27,7 @@ module ActsAsTaggableSimple #:nodoc:
     #   tags = ActsAsTaggableSimple::Tag.find_or_create_all_tags(%w{rails css html javascript})
     #
     def self.find_or_create_all_tags(list)
-      existing_tags = Tag.where(:name => list)
+      existing_tags = Tag.where(:name.in => list)
       create_tags_list = list - existing_tags.map(&:name)
 
       create_tags = create_tags_list.collect do |tag|
@@ -33,6 +35,10 @@ module ActsAsTaggableSimple #:nodoc:
       end
 
       create_tags + existing_tags.all
+    end
+
+    def self.find_by_names(names)
+      where(:name.in => names)
     end
   end
 end

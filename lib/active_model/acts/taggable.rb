@@ -1,4 +1,4 @@
-module ActiveRecord #:nodoc:
+module ActiveModel #:nodoc:
   module Acts #:nodoc:
 
     # This +acts_as+ extension provides capabilities for adding and removing tags to ActiveRecord objects.
@@ -8,15 +8,12 @@ module ActiveRecord #:nodoc:
     #   class Note < ActiveRecord::Base
     #     acts_as_taggable
     #   end
-    # 
+    #
     #   note.tag_list = "rails css javascript"
     #   note.tag_list  # returns ["rails", "css", "javascript"]
     #
     module Taggable
-      def self.included(base) #:nodoc:
-        base.send :include, InstanceMethods
-        base.extend ClassMethods
-      end
+      extend ActiveSupport::Concern
 
         # Provides one method: ActiveRecord::Base#acts_as_taggable.
       module ClassMethods
@@ -26,8 +23,7 @@ module ActiveRecord #:nodoc:
         # Future support for a :delimeter option for specifying the tag delimeter
         def acts_as_taggable(*args)
           has_many :taggings, as: :taggable, class_name: "ActsAsTaggableSimple::Tagging"
-          has_many :tags, through: :taggings, as: :taggable, class_name: "ActsAsTaggableSimple::Tag"
-          before_save :save_tags
+          after_save :save_tags
 
           args << "tag" if args.empty?
           contexts = args.map(&:to_s).map(&:singularize)
@@ -61,7 +57,7 @@ module ActiveRecord #:nodoc:
         end
 
         def tags_on(context)
-          tags.where(taggings: {context: context})
+          taggings.where(context: context).map(&:tag)
         end
 
         def taggings_on(context)
@@ -82,19 +78,23 @@ module ActiveRecord #:nodoc:
             new_tags = tag_list - existing_tags
             old_tags = existing_tags - tag_list
 
-            taggings.joins(:tag).where(context: context, tags: {name: old_tags}).destroy_all
+            destroyed_taggings = []
+            taggings_on(context).each do |tagging|
+              if old_tags.include? tagging.tag.name
+                tagging.destroy
+                destroyed_taggings << tagging
+              end
+            end
 
-            new_tags = ActsAsTaggableSimple::Tag.where(name: new_tags)
+            self.taggings -= destroyed_taggings
+
+            new_tags = ActsAsTaggableSimple::Tag.find_by_names(new_tags)
             new_tags.each do |tag|
-              taggings << ActsAsTaggableSimple::Tagging.new(tag: tag, context: context)
+              taggings.create! tag: tag, context: context
             end
           end
         end
       end
     end
   end
-end
-
-ActiveRecord::Base.class_eval do
-  include ActiveRecord::Acts::Taggable
 end

@@ -17,6 +17,8 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'activerecord'
   s.add_development_dependency 'activesupport'
   s.add_development_dependency 'sqlite3-ruby'
+  s.add_development_dependency 'mongoid'
+  s.add_development_dependency 'bson_ext'
   s.add_development_dependency 'factory_girl'
 
   s.files         = `git ls-files`.split("\n")

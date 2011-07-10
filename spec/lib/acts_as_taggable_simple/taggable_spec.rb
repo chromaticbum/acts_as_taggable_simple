@@ -116,7 +116,7 @@ describe "Taggable" do
       @taggable.tag_list = "ruby rails"
       @taggable.save
 
-      @taggable.taggings.should == old_taggings
+      @taggable.taggings.should == old_taggings[0..1]
     end
 
     it "tags multiple models simultaneously" do
